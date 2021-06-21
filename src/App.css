@@ -4,7 +4,7 @@
 }
 
 .App-header {
-  background-color: gray;
+  background-color: #bdcebe;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,8 @@
 
 
 .cicle-container {
-  
+  display: flex;
+  flex-direction: row;
 }
 
 .circle{
@@ -35,11 +36,47 @@
   background-color: blue;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.box
+{
+  width: 75px;
+  height: 75px;
+  border-radius: 0%;
+}
+
+.event-section{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+}
+
+.team-name{
+  color: black;
+}
+
+.content-colors{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
+}
+
+.event-color{
+  width: 10%;
+  height: 75px;
+  justify-content: flex-end;
+  flex-direction: row;
+  position: static;
+}
+
+.event-color.red {
+  background-color: red;
+}
+
+.event-color.blue{
+  background-color: blue;
+}
+
+.event-color.gray{
+  background-color: gray;
 }
