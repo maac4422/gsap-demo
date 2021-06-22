@@ -100,7 +100,7 @@
 
 .talkbubble {
   margin-top: 20px;
-  width: 300px;
+  width: 0%;
   height: 45px;
   background: red;
   position: relative;
@@ -118,4 +118,18 @@
   border-top: 22px solid transparent;
   border-right: 46px solid red;
   border-bottom: 22px solid transparent;
+  display: none;
+}
+
+body {
+  background: #404040;
+}
+
+.field__competitor-name {
+  dominant-baseline: middle;
+  fill: #fff;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 8px;
+  text-anchor: middle;
 }
