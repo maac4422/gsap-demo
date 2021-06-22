@@ -49,14 +49,14 @@ function App() {
       }
     })
     
+    gsap.to(actionMatchGray ,{duration: 1 ,width: "100%" , ease: "custom", delay: 0.2})
 
-
-    gsap.to(actionMatchRed ,{duration: 1 ,width: "100%" , ease: "custom", delay: 0.2,  
+    gsap.to(actionMatchRed ,{duration: 1 ,width: "100%" , ease: "custom", delay: 0.5,  
       onComplete: function(){ 
         setTextNotification("BUCCARESS")
       }
     })
-    gsap.to(actionMatchGray ,{duration: 1 ,width: "100%" , ease: "custom", delay: 0.4})
+    
     
     
   }
@@ -80,17 +80,23 @@ function App() {
     >
       <header className="App-header">
         <div className="event-section" ref={el => actionMatchEventContainer = el}>
+          
           <div className="content-colors">
+            <p className="team-name" ref={el=> textEvent = el}> 
+              {textNotification}
+            </p>
             <div className="event-color blue" ref={el => actionMatchBlue = el}></div>
             <div className="event-color gray" ref={el => actionMatchGray = el}></div>
+            <div className="event-color red" ref={el => actionMatchRed = el}></div>
           </div>
 
           <div className="content-colors-left">
-            <div className="event-color red" ref={el => actionMatchRed = el}></div>
+            
           </div>
-          <p className="team-name" ref={el=> textEvent = el}> 
-            {textNotification}
-          </p>
+          
+        </div>
+
+        <div className="talkbubble">
         </div>
 
         <button onClick={actionMatchEvent}>
