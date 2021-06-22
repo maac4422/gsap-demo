@@ -18,6 +18,10 @@ function App() {
   let textEvent = useRef(null)
   let arrowRoot = useRef(null)
   let svgImage = useRef(null)
+  let yellowLineMatch = useRef(null)
+  let blueLineMatch = useRef(null)
+  let ballPath = useRef(null)
+  let dotMatch = useRef(null)
 
   gsap.registerPlugin(CustomEase);
 
@@ -42,6 +46,9 @@ function App() {
     TweenMax.from(circleBlue, .8, {opacity: 0, x: 40, ease: Power3.easeOut, delay:4})
     */
     //TweenMax.staggerFrom([circle,circleRed,circleBlue], .8, {opacity: 0, x: 40, ease: Power3.easeOut}, .2)
+
+    gsap.to(dotMatch ,{duration: .1 ,attr: {cx: "0", cy:"0", display: "none"}})
+    gsap.to(ballPath ,{duration: 2 ,attr: {d: "M 0 0 Q 0 0 0 0"}, ease: "custom", delay: 0})
   }, [])
 
   const actionMatchEvent = () => {
@@ -75,8 +82,21 @@ function App() {
   }
 
   const changeSVG = () => {
-    
+    /*
     gsap.to(svgImage ,{duration: 2 ,fill: "rgb(255,0,255)", ease: "custom", delay: 0})
+    */
+    gsap.to(blueLineMatch ,{duration: 2 ,attr: {x1: "80", x2: "80"}, ease: "custom", delay: 0})
+    
+    gsap.to(dotMatch ,{duration: 0.1 ,attr: {cx: "80", cy:"10"}, ease: "custom", delay: 0,
+      onComplete: function(){
+        gsap.to(dotMatch ,{duration: 0.1 ,attr: {display: ""}, ease: "custom", delay: 0,
+          onComplete: function(){
+            gsap.to(ballPath ,{duration: 2 ,attr: {d: "M 10 20 Q 30 10 80 10"}, ease: "custom", delay: 0})
+          }
+        })
+      }
+    })
+
   }
 
 
@@ -125,10 +145,10 @@ function App() {
   <rect class="field-border" x="0" y="0" width="120" height="60" fill="none" stroke="#FFF" stroke-width="2"/>
   <path class="field-lines" d="M10 0 V60 M20 0 V60 M30 0 V60 M40 0 V60 M50 0 V60 M60 0 V60 M70 0 V60 M80 0 V60 M90 0 V60 M100 0 V60 M110 0 V60" stroke="#fff" stroke-width="0.25" />
   
-  <line class="anim-line-1" x1="55" y1="1" x2="55" y2="59" stroke="#DBED67" stroke-width="1.5"/>
-  <line class="anim-line-2" x1="65" y1="1" x2="65" y2="59" stroke="#8AAAFD" stroke-width="1.5"/>
-  <path class="anim-curve" d="M 20 30 Q 40 10 60 30" stroke="red" stroke-dasharray="2 2" fill="transparent"/>
-  <circle class="anim-dot" cx="60" cy="30" r="1.5" fill="red" />
+  <line class="anim-line-1" ref={el => yellowLineMatch = el} x1="55" y1="1" x2="55" y2="59" stroke="#DBED67" stroke-width="1.5"/>
+  <line class="anim-line-2"  ref={el => blueLineMatch = el} x1="65" y1="1" x2="65" y2="59" stroke="#8AAAFD" stroke-width="1.5"/>
+  <path class="anim-curve" ref={el => ballPath = el} d="M 20 30 Q 40 10 60 30" stroke="red" stroke-dasharray="2 2" fill="transparent"/>
+  <circle class="anim-dot" ref={el => dotMatch = el} cx="60" cy="30" r="1.5" fill="red" />
   <polygon classes="anim-arrow" points="68,26 74,30 68,34" fill="red" />
 </svg>
         </div>
